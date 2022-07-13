@@ -4,8 +4,6 @@
 
 <script>
 /* eslint-disable no-console */
-import 'whatwg-fetch';
-
 export default {
   name: 'AddToCalendar',
   props: {
@@ -19,12 +17,7 @@ export default {
 
   data() {
     return {
-      googleCalendarLink: null,
-      
-      dataSource : {
-        load :(options) => this.getData(options, { ShowDeleted : false}),
-      }
-      
+      googleCalendarLink: null
     }
   },
 
@@ -34,28 +27,7 @@ export default {
       if(!this.endTime) return console.warn("prop: endTime is required");
       if(!this.summary) return console.warn("prop: summary is required");
       this.googleCalendarLink = `http://www.google.com/calendar/event?action=TEMPLATE&text=${this.summary || ""}&dates=${this.formatDate(this.startTime)}/${this.formatDate(this.endTime)}&details=${this.details || ""}&location=${this.location || ""}`
-      window.open(this.googleCalendarLink),
-      console.log(this.googleCalendarLink) 
-    },
-    
-    request() {
-      // eslint-disable-next-line no-undef
-      gapi.client.calendar.events.insert({
-        'calendarId': 'primary'
-      });
-    },
-
-    
-
-    getData(_, requestOptions) {
-      const API_KEY = 'AIzaSyArWCVzkBsh0Q8NKKEVS6SRkmuGLY7bj9Q';
-      const CLIENT_ID ='681960233511-iuqgg3rjemh3sv8nurlisdp6bajc2dou.apps.googleusercontent.com';
-      const dataUrl = ['https://www.googleapis.com/calendar/v3/calendars/eimon221996@gmail.com/events',
-        CLIENT_ID, '/events?key=', API_KEY].join('');
-
-      return fetch(dataUrl, requestOptions).then(
-        (response) => response.json(),
-      ).then((data) => data.items);
+      window.open(this.googleCalendarLink, '_blank');
     },
 
     formatDate(date) {
@@ -101,4 +73,3 @@ a {
   color: #42b983;
 }
 </style>
-

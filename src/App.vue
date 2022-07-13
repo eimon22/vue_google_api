@@ -8,6 +8,7 @@
       :endTime="endTime"
       :location="location"
       :details="details"
+      
     />
     <!-- <example-calendar></example-calendar> -->
   </div>

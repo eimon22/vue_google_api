@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "core-js": "^3.3.2",
+    "googleapis": "^105.0.0",
+    "http2": "^3.3.7",
     "vue": "^2.6.10",
     "whatwg-fetch": "^3.6.2"
   },
